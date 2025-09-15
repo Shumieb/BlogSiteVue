@@ -1,7 +1,5 @@
 <script setup lang="ts">
-    const HandleUpdateUser = () =>{
-            console.log("update user")
-        }
+    
 </script>
 
 <template>
@@ -16,15 +14,16 @@
         <div class="text-center">
             <p class="text-2xl font-bold">
                 User name
-                <span 
-                    @click="HandleUpdateUser"
+                <router-link 
+                    to="/edit-userInfo/1"
                     class="cursor-pointer mx-1"
                 >
                     <i class="pi pi-pen-to-square" style="font-size: 1.2rem;"></i>
-                </span>
+            </router-link>
             </p>
             <p class="text-lg text-gray-800">Username@gmail.com</p>
             <p class="text-lg text-gray-800">Member since: June 2025</p>
+            <p class="text-lg text-gray-800">Membership status: Active</p>
         </div>        
     </section>
 </template>

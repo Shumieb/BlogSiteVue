@@ -1,20 +1,28 @@
 <script setup lang="ts">
+    import FileUpload from 'primevue/fileupload';
+    
     const showError = false;
-    const editing = false;
+    const editing = true;
     const admin = false;
-    const submitted = false;
-    const approved = false;
+    const submitted = true;
+    const approved = true;
     const awaitingWithdrawal = false;
+    const published = true;
+    const selected = ""
 
     const HandleSubmit = () =>{
         console.log("handle submit")
     }
 
-    const selected = ""
+    const onUpload = () =>{
+        console.log("on onupload")
+    }
+
+    
 </script>
 
 ,<template>
-    <form @submit="HandleSubmit" class="w-[60%] mx-auto border-1 border-gray-500 shadow-md rounded-xl py-10 px-4 mt-10">
+    <form @submit.prevent="HandleSubmit" class="w-[60%] mx-auto border-1 border-gray-500 shadow-md rounded-xl py-10 px-4 mt-10">
         <p class="text-3xl text-center font-bold mb-15">
             {{ editing ? "Editing Blog" : "Add New Blog" }}
         </p>
@@ -44,6 +52,19 @@
             </select>
         </div>
         <div class="w-[80%] mb-8 mx-auto">
+            <FileUpload 
+                style="background-color: black; color: antiquewhite; margin-right: 15px; padding: 8px; border-radius: 10px; font-size: 18px;"
+                ref="fileupload" 
+                mode="basic" 
+                name="blog-image" 
+                url="/api/upload" 
+                accept="image/*" 
+                @upload="onUpload" 
+                choose-label="Upload Image"
+                choose-icon=" "
+            />            
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
             <textarea 
                 rows="4" cols="50"
                 class="border-1 border-gray-500 w-[100%] py-2 px-2 text-xl rounded-lg"
@@ -71,10 +92,13 @@
             <b>Current Status:</b> Awaiting Withdrawal
         </p>
         <!--------Dates ---------->
-        <p v-if="!submitted && !approved && editing" class="text-lg text-center mt-2 text-gray-600">Created: 12 June 2025</p>
-        <p v-if="submitted" class="text-lg text-center mt-2 text-gray-600">Submitted: 12 June 2025</p>
-        <p v-if="approved" class="text-lg text-center mt-2 text-gray-600">Approved: 12 June 2025</p>
-        <p v-if="awaitingWithdrawal" class="text-lg text-center mt-2 text-gray-600">Withdrawal Request Sent: 12 June 2025</p>
+        <div class="flex justify-center items-center flex-wrap w-[80%] mx-auto mt-2 mb-2">
+            <p v-if="editing" class="text-lg text-center text-gray-600 me-6">Created: 12 June 2025</p>
+            <p v-if="submitted" class="text-lg text-center text-gray-600 me-6">Submitted: 12 June 2025</p>
+            <p v-if="approved" class="text-lg text-center text-gray-600 me-6">Approved: 12 June 2025</p>
+            <p v-if="published" class="text-lg text-center text-gray-600 me-6">Published: 12 June 2025</p>
+            <p v-if="awaitingWithdrawal" class="text-lg text-center text-gray-600 me-6">Withdrawal Request Sent: 12 June 2025</p>
+        </div>
         <!--------Change Status Buttons ---------->
         <p class="text-lg text-center mt-2">Use the buttons below to change the status</p>
         <div class="mb-4 mx-auto flex justify-center items-center gap-4">

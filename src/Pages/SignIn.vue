@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <form @submit="HandleSubmit" class="w-[60%] mx-auto border-1 border-gray-500 shadow-md rounded-xl py-10 px-4 mt-10">
+    <form @submit.prevent="HandleSubmit" class="w-[60%] mx-auto border-1 border-gray-500 shadow-md rounded-xl py-10 px-4 mt-10">
         <p class="text-3xl text-center font-bold mb-15">Sign In</p>        
         <div class="w-[80%] mb-8 mx-auto">
             <input 

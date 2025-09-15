@@ -34,6 +34,11 @@ const router = createRouter({
             component: () => import('../Pages/AddEditBlog.vue')
         },
         {
+            path: '/edit-userInfo/:id',
+            name: 'editUserInfo',
+            component: () => import('../Pages/EditUserInfo.vue')
+        },
+        {
             path: '/user-dashboard/:id',
             name: 'userDashboard',
             component: () => import('../Pages/UserDashboard.vue')
