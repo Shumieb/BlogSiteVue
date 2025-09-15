@@ -25,7 +25,7 @@
                     <router-link 
                         to="/edit-blogs/1" 
                         class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm"
-                    >Withdraw</router-link>
+                    >Request Withdraw</router-link>
                 </div>    
                 <div v-if=published class="flex justify-start items-center gap-5 py-0 my-0">
                     <p class="my-0 bg-violet-900 text-white py-2 px-2 rounded-sm"

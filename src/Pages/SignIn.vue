@@ -33,7 +33,7 @@
         <div class="mb-8 mx-auto text-center">
             <input 
                type="submit"
-               value="Sign Up"
+               value="Sign In"
                class="bg-gray-900 text-white py-4 px-8 text-lg rounded-lg cursor-pointer shadow-xl hover:shadow-2xl hover:bg-gray-800"
             >
         </div>
@@ -47,5 +47,15 @@
 </template>
 
 <style scoped>
-
+    input[type=checkbox]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        padding: 10px;
+        accent-color: rgb(47, 45, 45);
+    }
 </style>

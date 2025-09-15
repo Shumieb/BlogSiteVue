@@ -1,10 +1,118 @@
 <script setup lang="ts">
+    const showError = false;
+    const editing = false;
+    const admin = false;
+    const submitted = false;
+    const approved = false;
+    const awaitingWithdrawal = false;
+
+    const HandleSubmit = () =>{
+        console.log("handle submit")
+    }
+
+    const selected = ""
 </script>
 
 ,<template>
-    <p>edit add blog</p>
+    <form @submit="HandleSubmit" class="w-[60%] mx-auto border-1 border-gray-500 shadow-md rounded-xl py-10 px-4 mt-10">
+        <p class="text-3xl text-center font-bold mb-15">
+            {{ editing ? "Editing Blog" : "Add New Blog" }}
+        </p>
+        <div class="w-[80%] mb-8 mx-auto">
+            <input 
+                class="border-1 border-gray-500 py-2 px-2 text-xl rounded-lg w-[100%]"
+                type="text" 
+                name="title" 
+                id="title"
+                placeholder="Blog Title"
+            >
+            <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
+            <select 
+                name="category"  
+                id="category"
+                v-model="selected"
+                class="w-[100%] border-1 border-gray-500 py-2 px-2 text-xl rounded-lg"
+            >
+                <option value="">Select A Category</option>
+                <option value="nature">Nature</option>
+                <option value="adventure">Adventure</option>
+                <option value="news">News</option>
+                <option value="fashion">Fashion</option>
+                <option value="beauty">Beauty</option>
+            </select>
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
+            <textarea 
+                rows="4" cols="50"
+                class="border-1 border-gray-500 w-[100%] py-2 px-2 text-xl rounded-lg"
+                name="summary" 
+                id="Summary"
+                placeholder="Summary"
+            />
+            <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
+            <textarea 
+                rows="10" cols="50"
+                class="border-1 border-gray-500 w-[100%] py-2 px-2 text-xl rounded-lg"
+                name="content" 
+                id="content"
+                placeholder="Main Content"
+            />
+            <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
+        </div>
+        <!--------Status ---------->
+        <p v-if="!awaitingWithdrawal" class="text-2xl text-center">
+            <b>Current Status:</b> {{ editing ? "Awaiting Approval": "New Blog" }}
+        </p>
+        <p v-if="awaitingWithdrawal" class="text-2xl text-center text-red-950">
+            <b>Current Status:</b> Awaiting Withdrawal
+        </p>
+        <!--------Dates ---------->
+        <p v-if="!submitted && !approved && editing" class="text-lg text-center mt-2 text-gray-600">Created: 12 June 2025</p>
+        <p v-if="submitted" class="text-lg text-center mt-2 text-gray-600">Submitted: 12 June 2025</p>
+        <p v-if="approved" class="text-lg text-center mt-2 text-gray-600">Approved: 12 June 2025</p>
+        <p v-if="awaitingWithdrawal" class="text-lg text-center mt-2 text-gray-600">Withdrawal Request Sent: 12 June 2025</p>
+        <!--------Change Status Buttons ---------->
+        <p class="text-lg text-center mt-2">Use the buttons below to change the status</p>
+        <div class="mb-4 mx-auto flex justify-center items-center gap-4">
+                <button 
+                    type="submit"
+                    v-if="!admin && !awaitingWithdrawal"
+                    class="bg-green-900 text-white py-2 px-4 my-2 rounded-sm text-lg cursor-pointer"
+                >Submit For Approval</button>
+                <button
+                    type="submit"
+                    v-if="admin && !awaitingWithdrawal"
+                    class="bg-green-900 text-white py-2 px-4 my-2 rounded-sm text-lg cursor-pointer"
+                >Publish</button>
+                <button
+                    type="submit"
+                    v-if="admin && awaitingWithdrawal"
+                    class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm text-lg cursor-pointer"
+                >Withdraw</button>
+                <button
+                    type="submit"
+                    v-if="editing && !admin && !awaitingWithdrawal"
+                    class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm text-lg cursor-pointer"
+                >Request Withdrawal</button>
+        </div> 
+    </form>    
 
 </template>
 
 <style scoped>
+    input[type=checkbox]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        padding: 10px;
+        accent-color: rgb(47, 45, 45);
+    }
 </style>
