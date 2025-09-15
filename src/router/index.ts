@@ -29,6 +29,11 @@ const router = createRouter({
             component: () => import('../Pages/Blog.vue')
         },
         {
+            path: '/edit-blogs/:id',
+            name: 'editBlog',
+            component: () => import('../Pages/AddEditBlog.vue')
+        },
+        {
             path: '/user-dashboard/:id',
             name: 'userDashboard',
             component: () => import('../Pages/UserDashboard.vue')
