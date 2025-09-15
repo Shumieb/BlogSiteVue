@@ -72,8 +72,7 @@
                 <router-link to="/signIn" class="underline">Sign In</router-link> 
             </p>
         </div>
-    </form>
-    
+    </form>    
 </template>
 
 <style scoped>

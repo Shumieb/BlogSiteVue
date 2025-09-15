@@ -10,7 +10,7 @@
     <section 
         class="border-1 border-gray-500 rounded-md shadow-lg"
     >
-        <div class="rounded items-center border-b-1 py-1 bg-gray-300 border-gray-500 px-4">
+        <div class="rounded items-center border-b-1 py-1 bg-gray-50 border-gray-500 px-4">
             <p class="text-xl mt-3">This is blog 1</p>
             <div class="text-lg py-1">
                 <div v-if=submit class="my-4">
