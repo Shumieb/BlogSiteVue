@@ -42,7 +42,17 @@ const router = createRouter({
             path: '/author-dashboard/:id',
             name: 'authorDashboard',
             component: () => import('../Pages/AuthorDashboard.vue')
-        }
+        },
+        {
+            path: '/terms',
+            name: 'terms',
+            component: () => import("../Pages/Terms.vue")
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: () => import("../Pages/About.vue")
+        },
     ]
 })
 

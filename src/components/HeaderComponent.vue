@@ -9,6 +9,7 @@
         <nav>
           <RouterLink class="text-lg mx-3 hover:underline decoration-violet-900" to="/">Home</RouterLink>
           <RouterLink class="text-lg mx-3 hover:underline decoration-violet-900" to="/blogs">Blogs</RouterLink>
+          <RouterLink class="text-lg mx-3 hover:underline decoration-violet-900" to="/about">About</RouterLink>
           <RouterLink class="text-lg mx-3 hover:underline decoration-violet-900" to="/user-dashboard/1">User Dashboard</RouterLink>
           <RouterLink class="text-lg mx-3 hover:underline decoration-violet-900" to="/author-dashboard/1">Author Dashboard</RouterLink>
           <RouterLink class="text-lg mx-3 hover:underline decoration-violet-900" to="/signUp">Sign Up</RouterLink>
