@@ -33,7 +33,7 @@
                     <input 
                         type="submit" 
                         value="Sign Up" 
-                        class="bg-violet-900 text-white py-2 px-8 text-lg rounded cursor-pointer"
+                        class="bg-violet-900 text-white py-2 px-8 text-lg rounded cursor-pointer hover:bg-violet-800"
                     >
                 </div>                  
                 </form>
