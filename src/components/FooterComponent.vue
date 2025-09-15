@@ -1,9 +1,8 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-    <footer class="text-lg">
+    <footer class="text-lg mt-8">
         <div class="w-[80%] flex justify-center gap-4 mx-auto pt-2">
             <a 
                 role="button"
@@ -29,5 +28,4 @@
 </template>
 
 <style scoped>
-
 </style>

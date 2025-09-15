@@ -6,9 +6,9 @@
 <template>
     <div>
         <HeaderComponent />
-        <div class="min-h-[75vh]">
+        <main class="min-h-[75vh]">
             <RouterView />
-        </div>        
+        </main>        
         <FooterComponent />
     </div>
 </template>
