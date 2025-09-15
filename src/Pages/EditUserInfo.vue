@@ -44,26 +44,51 @@
             <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
         </div>
         <div class="w-[80%] mb-8 mx-auto">
+            <input 
+                class="border-1 border-gray-500 py-2 px-2 text-xl rounded-lg w-[100%]"
+                type="password" 
+                name="newpassword" 
+                id="newpassword"
+                placeholder="New Password"
+            >
+            <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
+            <input 
+                class="border-1 border-gray-500 py-2 px-2 text-xl rounded-lg w-[100%]"
+                type="password" 
+                name="cpassword" 
+                id="cpassword"
+                placeholder="Confirm Password"
+            >
+            <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
             <div class="text-center">
                 <p class="text-xl mb-2"><b>Membership Status:</b> Active</p>
                 <button 
                     v-if="activeMember"
                     type="button"
-                    class="bg-pink-900 text-white text-xl px-6 py-2 rounded-md cursor-pointer"
+                    class="bg-pink-900 text-white text-xl px-6 py-4 rounded-md cursor-pointer"
                 >Deactivate Membership</button>
                 <button 
                     v-if="!activeMember"
                     type="button"
-                     class="bg-gray-900 text-white text-xl px-6 py-2 rounded-md cursor-pointer"
+                     class="bg-gray-900 text-white text-xl px-6 py-4 rounded-md cursor-pointer"
                 >Activate Membership</button>
             </div>            
             <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
         </div>
-        <div class="mb-8 mx-auto text-center">
+        <div class="mb-8 mx-auto text-center flex justify-center gap-5 items-center">
             <input 
                type="submit"
                value="Save Changes"
                class="bg-gray-900 text-white py-4 px-8 text-lg rounded-lg cursor-pointer shadow-xl hover:shadow-2xl hover:bg-gray-800"
+            >
+            <input 
+               type="button"
+               value="Delete Account"
+               class="bg-red-900 text-white py-4 px-8 text-lg rounded-lg cursor-pointer shadow-xl hover:shadow-2xl hover:bg-red-800"
             >
         </div>
 

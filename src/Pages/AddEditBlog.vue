@@ -8,6 +8,7 @@
     const approved = true;
     const awaitingWithdrawal = false;
     const published = true;
+    const isFeatured=false;
     const selected = ""
 
     const HandleSubmit = () =>{
@@ -63,6 +64,22 @@
                 choose-label="Upload Image"
                 choose-icon=" "
             />            
+        </div>
+        <div class="w-[80%] mb-8 mx-auto">
+            <div class="">
+                <p class="text-xl mb-2"><b>Featured Status:</b> Not Featured</p>
+                <button 
+                    v-if="isFeatured"
+                    type="button"
+                    class="bg-pink-900 text-white text-xl px-6 py-2 rounded-md cursor-pointer"
+                >Remove Feature</button>
+                <button 
+                    v-if="!isFeatured"
+                    type="button"
+                     class="bg-gray-900 text-white text-xl px-6 py-2 rounded-md cursor-pointer"
+                >Feature</button>
+            </div>            
+            <p v-if="showError" class="text-pink-900 font-bold px-2">Error</p>
         </div>
         <div class="w-[80%] mb-8 mx-auto">
             <textarea 
