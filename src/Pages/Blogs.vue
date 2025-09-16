@@ -1,7 +1,26 @@
 <script setup lang="ts">
+    import { onMounted, ref } from 'vue';
     import BlogsSearch from '../components/BlogsSearch.vue';  
     import BlogVComponent from '../components/BlogVComponent.vue';
     import NewsLetterSignUpComponent from '../components/NewsLetterSignUpComponent.vue';
+    import { useBlogsStore } from '../stores/BlogStore';
+    import { MockBlogs } from '../MockData/MockData';
+
+     // variables
+    const fetchedBlogs = ref()
+
+    //store
+    const blogsStore = useBlogsStore()
+
+    onMounted(()=>{
+        if(blogsStore.blogs && blogsStore.blogs.length > 0){
+            fetchedBlogs.value = blogsStore.blogs
+        }else{
+            // update store
+            blogsStore.blogs = MockBlogs
+            fetchedBlogs.value = MockBlogs
+        }      
+    })
 
     const HandleBlogLoad = () =>{
         console.log("load more blogs")
@@ -17,12 +36,11 @@
         </div>
     </section>
     <section class="w-[80%] mx-auto px-2 py-1">
-        <BlogVComponent/>
-        <BlogVComponent/>
-        <BlogVComponent/>
-        <BlogVComponent/>
-        <BlogVComponent/>
-        <BlogVComponent/>
+        <ul>
+            <li v-for="blog in fetchedBlogs" :key="blog.Id">
+                <BlogVComponent :blog="blog"/>
+            </li>
+        </ul>
     </section>
     <section class="mt-4 mb-8 text-center">
         <button 

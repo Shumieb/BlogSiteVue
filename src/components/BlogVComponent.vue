@@ -55,9 +55,7 @@
                 <p>|</p>
                 <p class="capitalize">{{categoryName}}</p>
             </div>
-            <p class="text-lg">
-                {{ displaySummary }}
-            </p>
+            <p class="text-lg">{{ displaySummary }}</p>
             <div class="flex justify-between items-center">
                 <div class="flex item-center gap-2 mt-3">
                     <img 

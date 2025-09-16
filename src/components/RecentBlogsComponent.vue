@@ -1,5 +1,9 @@
 <script setup lang="ts">
     import BlogHComponent from './BlogHComponent.vue';
+
+     //props
+     const props = defineProps(["recentBlogs"])
+
 </script>
 
 <template>
@@ -14,14 +18,8 @@
             </div>
             <section >
                 <ul class="grid grid-cols-3 gap-5">
-                    <li>
-                        <BlogHComponent/>
-                    </li>
-                    <li>
-                        <BlogHComponent/>
-                    </li>
-                    <li>
-                        <BlogHComponent/>
+                    <li v-for="blog in props.recentBlogs" :key="blog.Id">
+                        <BlogHComponent :blog="blog"/>
                     </li>
                 </ul>                
             </section>

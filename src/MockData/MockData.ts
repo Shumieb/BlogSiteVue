@@ -109,6 +109,7 @@ export const MockBlogs: BlogType[] = [
     {
         Id: "2",
         title: "This is Blog number two",
+        isFeatured: true,
         summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
                 `,
@@ -118,7 +119,6 @@ export const MockBlogs: BlogType[] = [
             cumque in tempora blanditiis, veritatis harum tempore perferendis iure. 
             Facere nesciunt porro molestiae rerum, aliquid praesentium. `,
         likes: 5,
-        isFeatured: true,
         authorId: "2",
         categoryId: "2",
         statusId: "4",
@@ -127,6 +127,7 @@ export const MockBlogs: BlogType[] = [
     {
         Id: "3",
         title: "This is Blog number three",
+        isFeatured: true,
         summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
                 `,
@@ -140,11 +141,11 @@ export const MockBlogs: BlogType[] = [
         categoryId: "3",
         statusId: "4",
         createdDate: new Date(2024, 12, 24),
-        isFeatured: true
     },
     {
         Id: "5",
         title: "This is Blog number five",
+        isFeatured: true,
         summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
                 `,
@@ -158,10 +159,10 @@ export const MockBlogs: BlogType[] = [
         categoryId: "4",
         statusId: "4",
         createdDate: new Date(2022, 8, 24),
-        isFeatured: false
     },
     {
         Id: "6",
+        isFeatured: true,
         title: "This is Blog number six",
         summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
@@ -172,7 +173,6 @@ export const MockBlogs: BlogType[] = [
             cumque in tempora blanditiis, veritatis harum tempore perferendis iure. 
             Facere nesciunt porro molestiae rerum, aliquid praesentium. `,
         likes: 10,
-        isFeatured: false,
         authorId: "4",
         categoryId: "5",
         statusId: "4",
@@ -181,6 +181,7 @@ export const MockBlogs: BlogType[] = [
     {
         Id: "7",
         title: "This is Blog number seven",
+        isFeatured: true,
         summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
                 `,
@@ -194,11 +195,11 @@ export const MockBlogs: BlogType[] = [
         categoryId: "3",
         statusId: "4",
         createdDate: new Date(2025, 10, 20),
-        isFeatured: true
     },
     {
         Id: "8",
         title: "This is Blog number eight",
+        isFeatured: true,
         summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
                 `,
@@ -212,6 +213,6 @@ export const MockBlogs: BlogType[] = [
         categoryId: "1",
         statusId: "4",
         createdDate: new Date(2024, 12, 24),
-        isFeatured: false
+
     }
 ]

@@ -1,18 +1,8 @@
 <script setup lang="ts">
     import BlogVComponent from './BlogVComponent.vue';
-    import { onMounted, ref } from "vue";
-    import { useBlogsStore } from '../stores/BlogStore';
-
-    //variable
-    const featuredBlogs = ref()
-
-     //store
-    const blogsStore = useBlogsStore()
-    //console.log(store.getFeaturedBlogs)
-
-    onMounted(()=>{
-        featuredBlogs.value = blogsStore.getFeaturedBlogs
-    })
+    
+   // props
+   const props = defineProps(["featuredBlogs"])
 
 </script>
 
@@ -21,7 +11,7 @@
         <p class="text-xl font-bold">Featured Blogs</p>
         <section>
             <ul>
-                <li v-for="blog in featuredBlogs" :key="blog.Id">
+                <li v-for="blog in props.featuredBlogs" :key="blog.Id">
                     <BlogVComponent :blog="blog"/>
                 </li>
             </ul>

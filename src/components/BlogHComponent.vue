@@ -1,5 +1,39 @@
 <script setup lang="ts">
     import BlogLikesComponent from './BlogLikesComponent.vue';
+      import { onMounted, ref } from 'vue';
+    import { useAuthorStore } from '../stores/AuthorStore';
+    import { useCategoryStore } from '../stores/CategoryStore';
+    import {getFormattedDate} from '../utils/HelperFunctions'
+
+    // props
+    const props = defineProps(["blog"])
+
+    // variables
+    const authorName = ref("")
+    const categoryName = ref("")
+    const dateToDisplay = ref("")
+    const displaySummary = ref("")
+
+    // store
+    const authorStore = useAuthorStore()
+    const categoryStore = useCategoryStore()
+
+    // run on component initiation
+    onMounted(()=>{
+        // set author and category
+        let author = authorStore.getAuthorById(props.blog.authorId)
+        let category =categoryStore.getCategoryById(props.blog.categoryId)
+        author && (authorName.value = author.name)
+        category && (categoryName.value = category.name)
+        // format date
+        dateToDisplay.value = getFormattedDate(props.blog.createdDate)
+        // display summary
+        if(props.blog.summary.trim().length > 250){
+            displaySummary.value = props.blog.summary.substring(0,250) + "..."
+        }else{
+            displaySummary.value = props.blog.summary
+        }
+    })
 
 </script>
 
@@ -15,22 +49,14 @@
         <div class="px-4 py-6">
             <router-link 
                 to="/blogs/1" 
-                class="text-2xl hover:underline decoration-violet-900"
-            >Blog title</router-link>
+                class="text-2xl hover:underline decoration-violet-900 capitalize"
+            >{{props.blog.title}}</router-link>
             <div class="flex align-baseline mb-5 text-gray-600 gap-2 pt-1">
-                <p>12 June 2025</p>
+                <p>{{dateToDisplay}}</p>
                 <p>|</p>
-                <p>nature</p>
+                <p class="capitalize">{{categoryName}}</p>
             </div>
-            <p class="text-lg">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
-                reiciendis eaque aperiam officiis magnam illum cupiditate autem harum 
-                quod velit at consectetur. Et nihil quae animi accusamus maiores recusandae 
-                eum velit harum rem nulla. Architecto, illum? Doloribus eaque quis, praesentium, 
-                officia quidem provident, 
-                reiciendis repudiandae libero nesciunt officiis itaque blanditiis non assumenda.
-            </p>
+            <p class="text-lg">{{ displaySummary }}</p>
             <div class="flex justify-between items-center">
                 <div class="flex item-center gap-2 mt-5">
                     <img 
@@ -38,7 +64,7 @@
                         alt="author image"
                         class="h-10 w-10 rounded-full object-fit grayscale-25"
                     >
-                    <p class="text-gray-600 pt-3">by Shumie</p>
+                    <p class="text-gray-600 pt-3">{{authorName}}</p>
                 </div>
                 <BlogLikesComponent/>
             </div>            
