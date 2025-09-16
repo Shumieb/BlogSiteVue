@@ -12,10 +12,18 @@
                     class="text-xl hover:underline decoration-violet-900"
                 >View Blogs</router-link> 
             </div>
-            <section class="grid grid-cols-3 gap-5">
-                <BlogHComponent/>
-                <BlogHComponent/>
-                <BlogHComponent/>
+            <section >
+                <ul class="grid grid-cols-3 gap-5">
+                    <li>
+                        <BlogHComponent/>
+                    </li>
+                    <li>
+                        <BlogHComponent/>
+                    </li>
+                    <li>
+                        <BlogHComponent/>
+                    </li>
+                </ul>                
             </section>
         </div>
     </section>    

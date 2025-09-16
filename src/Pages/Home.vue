@@ -3,6 +3,12 @@
     import RecentBlogsComponent from '../components/RecentBlogsComponent.vue';
     import FeaturedBlogsComponent from '../components/FeaturedBlogsComponent.vue';
     import NewsLetterSignUpComponent from '../components/NewsLetterSignUpComponent.vue';
+   
+
+    // variables
+
+   
+
 </script>
 
 <template>

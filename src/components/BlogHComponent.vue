@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import BlogLikesComponent from './BlogLikesComponent.vue';
+
 </script>
 
 <template>
@@ -15,7 +16,7 @@
             <router-link 
                 to="/blogs/1" 
                 class="text-2xl hover:underline decoration-violet-900"
-            >This is one awesome blog</router-link>
+            >Blog title</router-link>
             <div class="flex align-baseline mb-5 text-gray-600 gap-2 pt-1">
                 <p>12 June 2025</p>
                 <p>|</p>
