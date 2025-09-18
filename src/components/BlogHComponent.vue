@@ -14,7 +14,7 @@
     
     // run on component initiation
     onBeforeMount(()=>{
-         // set route
+        // set route
         blogRoute.value = `/blogs/${props.blog.Id}`
         // format date
         dateToDisplay.value = getFormattedDate(props.blog.publishedDate.toDate())
