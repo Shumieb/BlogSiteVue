@@ -1,52 +1,58 @@
 <script setup lang="ts">
-    defineProps<{
-        submit?:boolean,
-        approval?:boolean,
-        published?:boolean
-    }>()
+    import { ref } from 'vue';
+
+    const published=ref(false)
+    const approved=ref(false)
+    const submitted=ref(false)
+    const withdrawn=ref(false)
+
 </script>
 
 <template>
-    <section 
-        class="border-1 border-gray-500 rounded-md shadow-lg"
-    >
-        <div class="items-center py-1 px-4">
-            <p class="text-xl mt-3 font-bold mb-2">This is blog 1</p>
-            <div class="py-1 flex items-center gap-4">
-                <p class="text-lg">Created: 12 December 2025</p>
-                <p v-if="submit==false" class="text-lg">></p>
-                <p v-if="submit==false" class="text-lg">Submitted: 12 December 2025</p>
-                <p v-if="published" class="text-lg">></p>
-                <p v-if=published class="text-lg">Published: 12 December 2025</p>
-            </div> 
-            <div class="text-lg py-1">
-                <div v-if=submit class="flex justify-end items-center gap-5 py-0 my-0">
+    <section class="border-1 border-gray-200 rounded-md shadow-lg mb-8">
+        <div class="items-center pb-1 pt-4 px-4">
+            <p class="text-2xl my-3 capitalize text-center">This is blog 1</p>
+            <div class="text-xl capitalize pt-1.5 flex items-center gap-4 justify-center">
+                <p><b>Category:</b> nature</p>
+                <p><b>Status:</b> published</p>
+                <p><b>Likes:</b> 20</p>
+                <p><b>Views:</b> 20</p>
+                <p><b>Is Featured:</b> true</p>
+            </div>           
+            <div class="py-3 px-6">
+                <p class="font-bold text-xl">Summary: </p>
+                <p class="text-lg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam, eveniet quia? Veniam doloribus repellat quidem, nostrum corrupti distinctio laudantium et.</p>
+           </div>               
+           <div class="py-2 flex items-center justify-center gap-4 text-lg text-gray-400 text-wrap">
+                <p><b>Created:</b> 12 December 2025</p>
+                <p v-if="submitted">></p>
+                <p v-if="submitted"><b>Submitted:</b> 12 December 2025</p>
+                <p v-if="approved">></p>
+                <p v-if="approved"><b>Approved:</b> 12 December 2025</p>
+                <p v-if="published">></p>
+                <p v-if="published"><b>Published:</b> 12 December 2025</p>
+            </div>  
+            <div class="flex justify-end items-center gap-5 py-0 my-0 text-lg">
+                <router-link 
+                    to="/edit-blogs/1"                             
+                    class="bg-violet-900 text-white py-2 px-4 my-2 rounded-sm w-[180px] text-center"
+                >Edit</router-link>
+                <router-link 
+                    v-if="(!published && !approved && !submitted) || withdrawn"
+                    to="/edit-blogs/1"                             
+                    class="bg-green-900 text-white py-2 px-4 my-2 rounded-sm w-[180px] text-center"
+                >Submit</router-link>
+                <router-link 
+                    v-if="(published || approved || submitted) && !withdrawn"
+                    to="/edit-blogs/1"                     
+                    class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm w-[180px] text-center"
+                >Request Withdrawal</router-link> 
                     <router-link 
-                        to="/edit-blogs/1"                             
-                        class="bg-green-900 text-white py-2 px-4 my-2 rounded-sm"
-                    >Submit</router-link>
-                    <router-link 
-                        to="/edit-blogs/1"                     
-                        class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm"
-                    >Delete Blog</router-link> 
-                </div>
-                <div v-if=approval class="flex justify-end items-center gap-5 py-0 my-0">
-                    <p class="my-0 bg-violet-900 text-white py-2 px-2 rounded-sm"
-                    >Awaiting Approval</p>
-                    <router-link 
-                        to="/edit-blogs/1" 
-                        class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm"
-                    >Request Withdraw</router-link>
-                </div>    
-                <div v-if=published class="flex justify-end items-center gap-5 py-0 my-0">
-                    <p class="my-0 bg-violet-900 text-white py-2 px-2 rounded-sm"
-                    >Awaiting Withdrawal</p> 
-                    <router-link 
-                        to="/edit-blogs/1"                     
-                        class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm"
-                    >Request Withdrawal</router-link> 
-                </div>         
-            </div>
+                    v-if="(!published && !approved && !submitted) || withdrawn"
+                    to="/edit-blogs/1"                     
+                    class="bg-red-800 text-white py-2 px-2 my-2 rounded-sm w-[180px] text-center"
+                >Delete</router-link> 
+            </div>         
         </div>             
     </section>
 </template>

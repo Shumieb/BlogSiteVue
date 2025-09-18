@@ -1,7 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+    import { onBeforeMount, ref } from 'vue'
 
+    // props
+    const props = defineProps(["likes"])  
+
+    // variables
     let likes = ref(0);
+
+    onBeforeMount(()=>{
+        likes.value = props.likes
+    })
+
     const HandleLike = () =>{
         likes.value += 1
     }

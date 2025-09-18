@@ -1,7 +1,8 @@
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue';
+    import { onBeforeMount, ref } from 'vue';
     import BlogLikesComponent from './BlogLikesComponent.vue';
     import {getFormattedDate} from '../utils/HelperFunctions'
+    import BlogViewsComponent from './BlogViewsComponent.vue';
 
     // props
     const props = defineProps(["blog"])
@@ -9,11 +10,14 @@
     // variables
     const dateToDisplay = ref("")
     const displaySummary = ref("")
+    const blogRoute = ref("")
 
     // run on component initiation
-    onMounted(()=>{
+    onBeforeMount(()=>{
+        // set route
+        blogRoute.value = `/blogs/${props.blog.Id}`
         // format date
-        dateToDisplay.value = getFormattedDate(props.blog.createdDate.toDate())
+        dateToDisplay.value = getFormattedDate(props.blog.publishedDate.toDate())
         // display summary
         if(props.blog.summary.trim().length > 250){
             displaySummary.value = props.blog.summary.substring(0,250) + "..."
@@ -35,7 +39,7 @@
         <div class="px-4 pt-4 col-span-2 py-4 flex flex-col justify-between">
             <div>
                 <router-link 
-                    to="/blogs/1" 
+                    :to="blogRoute"
                     class="text-2xl hover:underline decoration-violet-900 capitalize"
                 >{{props.blog.title}}</router-link>
                 <div class="flex align-baseline mb-3 text-gray-600 gap-2 pt-1">
@@ -54,9 +58,11 @@
                     >
                     <p class="text-gray-600 pt-3 capitalize">{{props.blog.Author.userName}}</p>
                 </div>
-                <BlogLikesComponent :likes="props.blog.likes"/>
-            </div>
-            
+                 <div class=" flex justify-end items-center gap-5 pt-3">
+                    <BlogLikesComponent :likes="props.blog.likes"/>
+                    <BlogViewsComponent :views="props.blog.views"/>
+                </div>
+            </div>            
         </div>
     </section>    
 </template>

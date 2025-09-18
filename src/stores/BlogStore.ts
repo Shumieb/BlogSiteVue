@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from "vue";
 import type { BlogType } from '../EntityTypes/Entities';
-import { getAllBlogsData } from '../services/firestoreService';
+import { getAllBlogsData, getBlogById } from '../services/firestoreService';
 
 export const useBlogsStore = defineStore('myBlogs', () => {
   // state properties
@@ -19,11 +19,16 @@ export const useBlogsStore = defineStore('myBlogs', () => {
     }
   }
 
-
+  const getStoreBlogById = async (id: string) => {
+    let blog: BlogType;
+    blog = await getBlogById(id)
+    if (blog) return blog
+  }
 
   return {
     blogs,
     getAllBlogs,
     getInitialBlogs,
+    getStoreBlogById
   }
 })

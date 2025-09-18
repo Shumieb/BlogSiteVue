@@ -1,5 +1,5 @@
 import { db } from '../services/config/firestoreConfig'
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
 
 // fetch data
 const getAllBlogsData = async () => {
@@ -14,6 +14,22 @@ const getAllBlogsData = async () => {
         return blogs
     } catch (error) {
         console.log("error fetching blogs data", error)
+    }
+}
+
+const getBlogById = async (id: string) => {
+    let blog: any;
+    try {
+        const docRef = doc(db, "Blogs", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            blog = docSnap.data()
+        } else {
+            console.log("No such document!");
+        }
+        return blog
+    } catch (error) {
+        console.log("error fetching blog data", error)
     }
 }
 
@@ -85,5 +101,6 @@ export {
     getAllAuthorsData,
     getAllBlogsData,
     getAllBlogStatusData,
-    getFeaturedBlogDate
+    getFeaturedBlogDate,
+    getBlogById
 }

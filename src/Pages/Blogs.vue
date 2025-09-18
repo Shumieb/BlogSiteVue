@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue';
+    import { ref, onBeforeMount } from 'vue';
     import BlogsSearch from '../components/BlogsSearch.vue';  
     import BlogVComponent from '../components/BlogVComponent.vue';
     import NewsLetterSignUpComponent from '../components/NewsLetterSignUpComponent.vue';
@@ -12,7 +12,7 @@
     //store
     const blogsStore = useBlogsStore()
 
-    onMounted(async()=>{
+    onBeforeMount(async()=>{
         let blogs:BlogType[] | undefined = blogsStore.getAllBlogs
         if(blogs && blogs.length > 0){
             fetchedBlogs.value = blogs

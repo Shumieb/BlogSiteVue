@@ -1,5 +1,24 @@
 <script setup lang="ts">
+    import { onBeforeMount, ref } from 'vue';
     import BlogLikeBtnComponent from './BlogLikeBtnComponent.vue';
+    import BlogViewsComponent from './BlogViewsComponent.vue';
+
+    // props
+    const props = defineProps(["blog"])   
+
+      // variables
+    const displaySummary = ref("")
+    
+    // run on component initiation
+    onBeforeMount(()=>{
+        // display summary
+        if(props.blog.summary.trim().length > 250){
+            displaySummary.value = props.blog.summary.substring(0,250) + "..."
+        }else{
+            displaySummary.value = props.blog.summary
+        }
+    })
+
 </script>
 
 <template>
@@ -18,18 +37,13 @@
                     alt="author image"
                     class="h-10 w-10 rounded-full object-fit grayscale-25"
                 >
-                <p class="text-gray-600 pt-1 text-xl">By Shumie</p>
+                <p class="text-gray-600 pt-1 text-xl capitalize">By {{props.blog.Author.userName}}</p>
             </div>
-            <p class="text-lg mt-4">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
-                reiciendis eaque aperiam officiis magnam illum cupiditate autem harum 
-                quod velit at consectetur. Et nihil quae animi accusamus maiores recusandae 
-                eum velit harum rem nulla. Architecto, illum? Doloribus eaque quis, praesentium, 
-                officia quidem provident, 
-                reiciendis repudiandae libero nesciunt officiis itaque blanditiis non assumenda.
-            </p>
-            <BlogLikeBtnComponent/>    
+            <p class="text-lg mt-4">{{displaySummary}}</p>
+            <div class="flex justify-between items-center">
+                <BlogViewsComponent :views="props.blog.views" />
+                <BlogLikeBtnComponent :likes="props.blog.likes"/>                
+            </div>
         </div>
     </section>    
 </template>

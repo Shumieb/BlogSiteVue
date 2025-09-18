@@ -3,7 +3,7 @@
     import RecentBlogsComponent from '../components/RecentBlogsComponent.vue';
     import FeaturedBlogsComponent from '../components/FeaturedBlogsComponent.vue';
     import NewsLetterSignUpComponent from '../components/NewsLetterSignUpComponent.vue';
-    import { onMounted, ref } from 'vue';
+    import { ref, onBeforeMount } from 'vue';
     import { useBlogsStore } from '../stores/BlogStore';
     import type { BlogType } from '../EntityTypes/Entities';
    
@@ -14,7 +14,7 @@
     //store
     const blogsStore = useBlogsStore() 
     
-    onMounted(async()=>{
+    onBeforeMount(async()=>{
         let blogs:BlogType[] | undefined = blogsStore.getAllBlogs
 
         // check if there are blogs is the store and get the blog data

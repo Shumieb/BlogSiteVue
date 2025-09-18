@@ -41,6 +41,7 @@ export interface BlogType {
     summary: string
     content: string
     likes: number
+    views: number
     imageUrl?: string
     author: AuthorSimpleType
     category: CategoryType
