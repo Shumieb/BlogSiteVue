@@ -2,64 +2,26 @@
     import BlogVComponent from '../components/BlogVComponent.vue';
     import UserInfoComponent from '../components/UserInfoComponent.vue';
     import NewsLetterSignUpComponent from '../components/NewsLetterSignUpComponent.vue';
-    import { ref } from 'vue';
+    import { onMounted, ref } from 'vue';
+    import { useBlogsStore } from '../stores/BlogStore';
+    import type { BlogType } from '../EntityTypes/Entities';
 
-    const likedBlogs = ref([
-        {
-            Id: "2",
-            title: "This is Blog number two",
-            isFeatured: true,
-            summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
-                    `,
-            content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Eos, vel dolorum accusantium alias amet provident iusto 
-                voluptates beatae officia quo mollitia fugiat ex distinctio quas 
-                cumque in tempora blanditiis, veritatis harum tempore perferendis iure. 
-                Facere nesciunt porro molestiae rerum, aliquid praesentium. `,
-            likes: 5,
-            authorId: "2",
-            categoryId: "2",
-            statusId: "4",
-            createdDate: new Date(2024, 12, 24)
-        },
-        {
-            Id: "3",
-            title: "This is Blog number three",
-            isFeatured: true,
-            summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
-                    `,
-            content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Eos, vel dolorum accusantium alias amet provident iusto 
-                voluptates beatae officia quo mollitia fugiat ex distinctio quas 
-                cumque in tempora blanditiis, veritatis harum tempore perferendis iure. 
-                Facere nesciunt porro molestiae rerum, aliquid praesentium. `,
-            likes: 5,
-            authorId: "3",
-            categoryId: "3",
-            statusId: "4",
-            createdDate: new Date(2024, 12, 24),
-        },
-        {
-            Id: "5",
-            title: "This is Blog number five",
-            isFeatured: true,
-            summary: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Laudantium in magni dolorum, rerum voluptatem unde mollitia numquam 
-                    `,
-            content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Eos, vel dolorum accusantium alias amet provident iusto 
-                voluptates beatae officia quo mollitia fugiat ex distinctio quas 
-                cumque in tempora blanditiis, veritatis harum tempore perferendis iure. 
-                Facere nesciunt porro molestiae rerum, aliquid praesentium. `,
-            likes: 5,
-            authorId: "4",
-            categoryId: "4",
-            statusId: "4",
-            createdDate: new Date(2022, 8, 24),
-        },
-    ])
+    const likedBlogs = ref()
+
+     //store
+    const blogsStore = useBlogsStore()
+
+    onMounted(async()=>{
+        let blogs:BlogType[] | undefined = blogsStore.getAllBlogs
+        if(blogs && blogs.length > 0){
+            likedBlogs.value = blogs
+            return
+        }
+
+        blogs = await blogsStore.getInitialBlogs()               
+        if(blogs == undefined) return  
+        likedBlogs.value = blogs  
+    })
     
     const HandleBlogLoad = () =>{
         console.log("load more blogs")
@@ -70,15 +32,13 @@
 <template>
     <UserInfoComponent/>
 
-    <section class="w-[80%] mx-auto px-3 py-4 mt-4">
-        <p class="text-xl font-bold">Liked Blogs</p>
-        <div>
-            <ul>
-                <li v-for="blog in likedBlogs" :key="blog.Id">
-                    <BlogVComponent :blog="blog"/>
-                </li>
-            </ul>
-        </div>
+    <section class="w-[80%] mx-auto px-3 py-4 mt-2">
+        <p class="text-2xl font-bold">Liked Blogs</p>
+        <ul>
+            <li v-for="blog in likedBlogs" :key="blog.Id">
+                <BlogVComponent :blog="blog"/>
+            </li>
+        </ul>
         <section class="mt-10 mb-3 text-center">
         <button 
             @click="HandleBlogLoad"

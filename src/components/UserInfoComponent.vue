@@ -3,12 +3,12 @@
 </script>
 
 <template>
-    <section class="w-[80%] mx-auto gap-3 mt-18 flex flex-col justify-center items-center">
+    <section class="w-[80%] mx-auto gap-3 mt-10 flex flex-col justify-center items-center">
         <div>
             <img 
                 src="https://images.pexels.com/photos/715134/pexels-photo-715134.jpeg" 
                 alt="userImg"
-                class="rounded-full w-60 h-60"
+                class="rounded-full w-80 h-80"
             >
         </div>
         <div class="text-center">

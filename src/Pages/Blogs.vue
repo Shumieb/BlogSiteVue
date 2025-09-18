@@ -4,7 +4,7 @@
     import BlogVComponent from '../components/BlogVComponent.vue';
     import NewsLetterSignUpComponent from '../components/NewsLetterSignUpComponent.vue';
     import { useBlogsStore } from '../stores/BlogStore';
-    import { MockBlogs } from '../MockData/MockData';
+    import type { BlogType } from '../EntityTypes/Entities';
 
      // variables
     const fetchedBlogs = ref()
@@ -12,14 +12,16 @@
     //store
     const blogsStore = useBlogsStore()
 
-    onMounted(()=>{
-        if(blogsStore.blogs && blogsStore.blogs.length > 0){
-            fetchedBlogs.value = blogsStore.blogs
-        }else{
-            // update store
-            blogsStore.blogs = MockBlogs
-            fetchedBlogs.value = MockBlogs
-        }      
+    onMounted(async()=>{
+        let blogs:BlogType[] | undefined = blogsStore.getAllBlogs
+        if(blogs && blogs.length > 0){
+            fetchedBlogs.value = blogs
+            return
+        }
+
+        blogs = await blogsStore.getInitialBlogs()               
+        if(blogs == undefined) return  
+        fetchedBlogs.value = blogs  
     })
 
     const HandleBlogLoad = () =>{

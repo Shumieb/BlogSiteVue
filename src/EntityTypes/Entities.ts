@@ -15,6 +15,11 @@ export interface AuthorType {
     isAdmin: boolean
 }
 
+export interface AuthorSimpleType {
+    Id: string
+    userName: string
+}
+
 export interface UserType {
     Id: string
     userName: string
@@ -37,9 +42,9 @@ export interface BlogType {
     content: string
     likes: number
     imageUrl?: string
-    authorId: string
-    categoryId: string
-    statusId: string
+    author: AuthorSimpleType
+    category: CategoryType
+    status: BlogStatusType
     isFeatured: boolean
     createdDate: Date
     submittedDate?: Date
